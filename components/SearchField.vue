@@ -5,13 +5,13 @@ const props = defineProps({
     type: String,
   },
 });
-
-const debouncedSearch = debounce((query) => {
-  console.log("Send API request", query);
+const emit = defineEmits(['onSearch'])
+const debouncedSearch = debounce(() => {
+    onSearch['onSearch']
 }, 500);
 
-function onSearch(query) {
-  debouncedSearch(query); 
+function onSearch() {
+  debouncedSearch(); 
 }
 
 const query = props.query;
@@ -27,7 +27,7 @@ const query = props.query;
           class="outline-none border-none"
           type="text"
           v-model="query"
-          @input="onSearch(query)"
+          @input="onSearch()"
           name=""
           id=""
           placeholder="Search"
