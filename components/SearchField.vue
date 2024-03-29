@@ -5,16 +5,20 @@ const props = defineProps({
     type: String,
   },
 });
-const emit = defineEmits(['onSearch'])
+const query = props.query;
+
+const emit = defineEmits(['onSearch','update:query'])
 const debouncedSearch = debounce(() => {
-    onSearch['onSearch']
+  emit('onSearch')
+  emit('update:query',query)
+  console.log(query);
+
 }, 500);
 
 function onSearch() {
   debouncedSearch(); 
 }
 
-const query = props.query;
 </script>
 <template>
   <div>
@@ -26,7 +30,7 @@ const query = props.query;
         <input
           class="outline-none border-none"
           type="text"
-          v-model="query"
+          :value="query"
           @input="onSearch()"
           name=""
           id=""

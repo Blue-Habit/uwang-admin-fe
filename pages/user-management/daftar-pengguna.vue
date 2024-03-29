@@ -1,9 +1,31 @@
 <script setup>
 const listUserStore = useListUser();
+const {searchUserByQuery, result} = useSearchByQuery();
 const route = useRouter();
+
+const data = ref([]);
+const searchInput = ref("");
+async function onSearch() {
+  await searchUserByQuery(searchInput.value);
+  data.value = result;
+}
+async function performSearch() {
+  if (searchInput.value.trim() !== "") {
+    onSearch()
+  } else {
+    await listUserStore.fetchUserWithPagination();
+    data.value = listUserStore.result;
+  }
+}
+
+
+watchEffect(() => {
+  performSearch();
+});
 
 onMounted(async () => {
   await listUserStore.fetchUserWithPagination();
+  data.value = listUserStore.result.data;
 });
 
 function goToDetailUser(idUser) {
@@ -44,37 +66,6 @@ const headers = [
     value: "status",
   },
 ];
-const dataDummy = [
-  {
-    id: "d1948347-db5b-496f-9eff-82ca06d44b11",
-    email: "fauzanramadhani06@gmail.com",
-    full_name: "Fauzan Gracia Ramadhanj",
-    username: "zans05_",
-    dateOfBirth: "2001-12-05T00:00:00Z",
-    dateOfRegister: "1999-03-25T00:00:00Z",
-    status: "ACTIVE",
-  },
-  {
-    id: "e0ef416e-d5bb-4ae4-8e0f-1ba4e533c958",
-    email: "azkiajmal@gmail.com",
-    full_name: "azkiaajmal fairuz",
-    username: "azscki",
-    dateOfBirth: "2003-08-03T00:00:00Z",
-    dateOfRegister: "1999-03-25T00:00:00Z",
-    status: "LOCKED",
-  },
-  {
-    id: "1551b951-5506-48cf-bb76-4804563e6287",
-    email: "azkigm03@gmail.com",
-    full_name: "tes",
-    username: "azkik",
-    dateOfBirth: "1999-03-25T00:00:00Z",
-    dateOfRegister: "1999-03-25T00:00:00Z",
-    status: "ACTIVE",
-  },
-];
-
-const dataUser = listUserStore.data;
 </script>
 <template>
   <MainLayout>
@@ -85,7 +76,7 @@ const dataUser = listUserStore.data;
           subtitle-text="Lihat semua daftar pengguna terupdate"
         />
         <div class="p-6">
-          <DataTable :items="dataDummy" :headers="headers">
+          <DataTable :items="listUserStore.result" :headers="headers">
             <template #actionHeader>
               <div class="w-full flex justify-between">
                 <div class="flex gap-2">
@@ -102,6 +93,7 @@ const dataUser = listUserStore.data;
                       <img src="/image/chevron-down.svg" alt="" />
                     </template>
                   </ButtonTable>
+                  <SearchField v-model:query="searchInput" @on-search="onSearch" @update:query="searchInput = $event" />
                 </div>
                 <ButtonTable text="Add Filter">
                   <template #leadingIcon>

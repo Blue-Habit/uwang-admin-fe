@@ -1,8 +1,8 @@
 import type { UserWithPaginationState } from "~/type/userWithPaginationState";
 import type { UserWithPaginationResponse } from "~/type/userWithPaginationResponse";
 
-export const useListUser = defineStore<string, UserWithPaginationState, {}, {
-  fetchUserWithPagination: (page:string) => Promise<void>;
+export const useSearchByQuery = defineStore<string, UserWithPaginationState, {}, {
+  searchUserByQuery: (query:string,page:string) => Promise<void>;
 }>('listUser', {
   state: () => ({
     result:[],
@@ -10,10 +10,10 @@ export const useListUser = defineStore<string, UserWithPaginationState, {}, {
   }),
 
   actions: {
-    async fetchUserWithPagination(page = "1") {
+    async searchUserByQuery(query,page = '1') {
       this.isLoading = true;
       const { get } = useApi();
-      const result = await get<Array<UserWithPaginationResponse>>(`uwang/dev/account/v1/admin/get-list-user?page=${page}&size={"10"}`);
+      const result = await get<Array<UserWithPaginationResponse>>(`uwang/dev/account/v1/admin/search-by-query?query=${query}&page=${page}&size={"10"}`);
       if (result && result.data) {
         this.result = result.data;
       }
