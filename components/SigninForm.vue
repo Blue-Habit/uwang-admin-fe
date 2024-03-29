@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAuth } from '../store/useAuth'
+
 const passwordVisible = ref(false)
 const showModal = ref(false)
+const { signIn } = useAuth()
 
 const switchVisibility = () => {
     passwordVisible.value = !passwordVisible.value
@@ -15,6 +18,17 @@ const closeModal = () => {
     showModal.value = false
 }
 
+const email = ref('')
+const password = ref('')
+
+const signInUser = () => {
+    signIn(email.value, password.value)
+}
+
+const handleSignInClick = (event: MouseEvent) => {
+    event.preventDefault()
+    signInUser()
+}
 </script>
 
 <template>
@@ -28,7 +42,8 @@ const closeModal = () => {
                 <br />
                 Friends of Uwang!👋🏻
             </h1>
-            <p class="text-white mb-16">You are a significant friend to someone who always helps keep money conducive to the
+            <p class="text-white mb-16">You are a significant friend to someone who always helps keep money conducive to
+                the
                 common goal of achieving
                 financial independence.</p>
             <span class="text-white text-center text-sm">
@@ -65,9 +80,8 @@ const closeModal = () => {
                     <p class="text-right text-sm text-blue-500 mb-4"><a @click.prevent="openModal" href="#">Lupa
                             password?</a></p>
                     <div class="flex items-center justify-between">
-                        <button type="submit"
-                            class="bg-state-primary-main hover:bg-state-primary-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Masuk
-                        </button>
+                        <button @click="handleSignInClick"
+                            class="bg-state-primary-main hover:bg-state-primary-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Masuk</button>
                     </div>
                 </form>
             </div>
