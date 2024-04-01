@@ -64,16 +64,17 @@ const user = useTopUser();
 onMounted(() => {
   user.getTopUser();
 });
+const formattedDate = computed(() => {
+  const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date().toLocaleDateString('id-ID', options);
+});
 </script>
 
 <template>
   <MainLayout>
-    <template #sidebar>
-      <Sidebar />
-    </template>
     <template #content>
       <div class="flex w-full flex-col gap-2">
-        <HeaderPage />
+        <HeaderPage headerText="Dashboard" :subtitleText="formattedDate"/>
         <div class="px-6">
           <StatisticDashboard :statistic="dataStatistic" />
         </div>

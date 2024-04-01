@@ -12,12 +12,12 @@ const user = {
   role: "Super Admin",
 };
 const items = ref([
-  { text: "Dashboard", href: "/", icon: "/image/home.svg" },
+  { text: "Dashboard", href: "/main/dashboard", icon: "/image/home.svg" },
   {
     text: "Manajemen User",
     icon: "/image/users.svg",
     submenu: [
-      { text: "Daftar Pengguna", href: "/users/list" },
+      { text: "Daftar Pengguna", href: "/user-management/daftar-pengguna" },
       { text: "Log Aktivitas Pengguna", href: "/users/logs" },
     ],
     show: false,

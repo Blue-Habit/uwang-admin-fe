@@ -12,13 +12,13 @@ function toogleSidebar() {
 </script>
 
 <template>
-  <div class="flex h-screen">
+  <div class="flex h-screen font-inter">
     <div :class="sidebarContainerClasses">
       <Sidebar @toggle-sidebar="toogleSidebar" :is-sidebar-open="isSidebarOpen" />
     </div>
 
-    <div class="w-full" >
-        <main class="overflow-y-auto">
+    <div class="flex-grow" >
+        <main class="">
           <slot name="content"></slot>
         </main>
     </div>
