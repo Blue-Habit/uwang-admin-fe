@@ -1,5 +1,38 @@
 <script setup lang="ts">
-
+const headers = [
+    {
+        name: "No",
+        value: "number",
+    },
+    {
+        name: "ID user",
+        value: "id",
+    },
+    {
+        name: "Name",
+        value: "full_name",
+    },
+    {
+        name: "Email",
+        value: "email",
+    },
+    {
+        name: "username",
+        value: "username",
+    },
+    {
+        name: "Tanggal Lahir",
+        value: "dateOfBirth",
+    },
+    {
+        name: "Tanggal Daftar",
+        value: "dateOfRegister",
+    },
+    {
+        name: "Status",
+        value: "status",
+    },
+];
 </script>
 <template>
     <div class="bg-separator h-screen">
@@ -54,7 +87,7 @@
                 </div>
 
             </div>
-            <DataTable />
+            <DataTable :headers="headers" />
         </div>
     </div>
 </template>
