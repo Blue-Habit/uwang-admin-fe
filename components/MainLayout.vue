@@ -12,7 +12,7 @@ function toogleSidebar() {
 </script>
 
 <template>
-  <div class="flex h-screen">
+  <div class="flex h-screen font-inter">
     <div :class="sidebarContainerClasses">
       <Sidebar @toggle-sidebar="toogleSidebar" :is-sidebar-open="isSidebarOpen" />
     </div>

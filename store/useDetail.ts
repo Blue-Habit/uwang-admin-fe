@@ -1,7 +1,6 @@
-import type { UserWithPaginationState } from "~/type/userWithPaginationState";
-import type { UserWithPaginationResponse } from "~/type/userWithPaginationResponse";
+import type { DetailUserResponse } from "~/type/detailUserRespose";
 
-export const useListUser = defineStore<string, UserWithPaginationState, {}, {
+export const useListUser = defineStore<string, {result: Array<DetailUserResponse>, isLoading:Boolean}, {}, {
   fetchUserWithPagination: () => Promise<void>;
 }>('listUser', {
   state: () => ({
@@ -13,7 +12,7 @@ export const useListUser = defineStore<string, UserWithPaginationState, {}, {
     async fetchUserWithPagination() {
       this.isLoading = true;
       const { get } = useApi();
-      const result = await get<Array<UserWithPaginationResponse>>('uwang/dev/account/v1/admin/get-list-user');
+      const result = await get<Array<DetailUserResponse>>('uwang/dev/account/v1/admin/get-list-user');
       if (result && result.data) {
         this.result = result.data;
       }

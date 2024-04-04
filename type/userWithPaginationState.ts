@@ -1,6 +1,6 @@
 import type { UserWithPaginationResponse } from "~/type/userWithPaginationResponse";
 
 export type UserWithPaginationState = {
-  statistics: UserWithPaginationResponse;
+  result: Array<UserWithPaginationResponse>;
   isLoading: boolean;
 };

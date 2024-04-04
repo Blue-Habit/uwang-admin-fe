@@ -1,9 +1,16 @@
 <script setup>
 const listUserStore = useListUser();
+const route = useRouter();
 
 onMounted(async () => {
   await listUserStore.fetchUserWithPagination();
 });
+
+function goToDetailUser(idUser) {
+  route.push(`/user-management/detail-pengguna/${idUser}`);
+}
+
+
 const headers = [
   {
     name: "No",
@@ -38,8 +45,37 @@ const headers = [
     value: "status",
   },
 ];
+const dataDummy = [
+  {
+    id: "d1948347-db5b-496f-9eff-82ca06d44b11",
+    email: "fauzanramadhani06@gmail.com",
+    full_name: "Fauzan Gracia Ramadhanj",
+    username: "zans05_",
+    dateOfBirth: "2001-12-05T00:00:00Z",
+    dateOfRegister: "1999-03-25T00:00:00Z",
+    status: "ACTIVE",
+  },
+  {
+    id: "e0ef416e-d5bb-4ae4-8e0f-1ba4e533c958",
+    email: "azkiajmal@gmail.com",
+    full_name: "azkiaajmal fairuz",
+    username: "azscki",
+    dateOfBirth: "2003-08-03T00:00:00Z",
+    dateOfRegister: "1999-03-25T00:00:00Z",
+    status: "LOCKED",
+  },
+  {
+    id: "1551b951-5506-48cf-bb76-4804563e6287",
+    email: "azkigm03@gmail.com",
+    full_name: "tes",
+    username: "azkik",
+    dateOfBirth: "1999-03-25T00:00:00Z",
+    dateOfRegister: "1999-03-25T00:00:00Z",
+    status: "ACTIVE",
+  },
+];
 
-
+const dataUser = listUserStore.data;
 </script>
 <template>
   <MainLayout>

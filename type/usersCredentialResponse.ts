@@ -1,14 +1,16 @@
+import type { ProfileResponse } from "./profileResponse";
+
 export type UserCredentialResponse = 
   {
-    id: '',
-    email: '',
-    full_name: '',
-    username: '',
-    dateOfBirth: '',
-    auth_provider: '',
-    status: '',
-    created_at: '',
-    updated_at: '',
-    deleted: false,
-    user_profile: null
+    id: string,
+    email:string,
+    full_name:string,
+    username: string,
+    dateOfBirth:Date,
+    authProvider:string,
+    status:string,
+    createdAt:Date,
+    updatedAt:Date,
+    deleted: boolean,
+    user_profile: Array<ProfileResponse>
   }

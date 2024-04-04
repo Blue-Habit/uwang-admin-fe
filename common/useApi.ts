@@ -218,7 +218,7 @@ function requestOptionBuilder(
 
     const header: { [key: string]: string } = {}
     if (!skipAuth) {
-        header["Authorization"] = `Bearer ${currentToken}`;
+        header["Authorization"] = `Bearer ${currentToken} `;
     }
     header["Content-Type"] = contentType();
     opt["method"] = method

@@ -1,3 +1,5 @@
+import type { UserCredentialResponse } from "./usersCredentialResponse";
+
 export type UserWithPaginationResponse = 
 {  
   status_code: number;
