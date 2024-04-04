@@ -17,8 +17,8 @@ function toogleSidebar() {
       <Sidebar @toggle-sidebar="toogleSidebar" :is-sidebar-open="isSidebarOpen" />
     </div>
 
-    <div class="w-full" >
-        <main class="overflow-y-auto">
+    <div class="flex-grow" >
+        <main class="">
           <slot name="content"></slot>
         </main>
     </div>

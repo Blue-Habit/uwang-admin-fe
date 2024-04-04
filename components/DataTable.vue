@@ -20,10 +20,6 @@ const props = defineProps({
       <slot name="actionHeader"></slot>
     </div>
     <table
-      style="
-        -moz-border-top-left-radius: 0.75rem /* 12px */;
-        -moz-border-top-right-radius: 0.75rem /* 12px */;
-      "
       class="rounded-t-xl w-full outline text-left my-5 outline-separator"
     >
       <thead class="border-b">
