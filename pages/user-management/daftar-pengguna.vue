@@ -10,6 +10,7 @@ function goToDetailUser(idUser) {
   route.push(`/user-management/detail-pengguna/${idUser}`);
 }
 
+
 const headers = [
   {
     name: "No",
@@ -79,54 +80,51 @@ const dataUser = listUserStore.data;
 <template>
   <MainLayout>
     <template #content>
-      <div class="flex w-full flex-col">
+      <div class="flex w-full flex-col gap-2">
         <HeaderPage
           header-text="Daftar Pengguna"
           subtitle-text="Lihat semua daftar pengguna terupdate"
         />
-        <div class="p-6">
-          <DataTable :items="dataDummy" :headers="headers">
-            <template #actionHeader>
-              <div class="w-full flex justify-between">
-                <div class="flex gap-2">
-                  <ButtonTable text="Add Filter">
-                    <template #leadingIcon>
-                      <img src="/image/filter.svg" alt="" />
-                    </template>
-                  </ButtonTable>
-                  <ButtonTable text="Sort">
-                    <template #leadingIcon>
-                      <img src="/image/arrow-up.svg" alt="" />
-                    </template>
-                    <template #trailingIcon>
-                      <img src="/image/chevron-down.svg" alt="" />
-                    </template>
-                  </ButtonTable>
-                </div>
+        <DataTable :items="listUserStore.data" :headers="headers">
+          <template #actionHeader>
+            <div class="w-full flex justify-between">
+              <div class="flex gap-2">
                 <ButtonTable text="Add Filter">
                   <template #leadingIcon>
-                    <img src="/image/download.svg" alt="" />
+                    <img src="/image/filter.svg" alt="" />
+                  </template>
+                </ButtonTable>
+                <ButtonTable text="Sort">
+                  <template #leadingIcon>
+                    <img src="/image/arrow-up.svg" alt="" />
+                  </template>
+                  <template #trailingIcon>
+                    <img src="/image/chevron-down.svg" alt="" />
                   </template>
                 </ButtonTable>
               </div>
-            </template>
-            <template #status="{ item }">
-              <p
-                class="bg-state-success-main text-white rounded-full px-2 py-1 w-fit"
-              >
-                {{ item.status }}
-              </p>
-            </template>
-            <template #id="{ item }">
-              <a
-                @click="goToDetailUser(item.id)"
-                class="text-state-primary-main underline cursor-pointer"
-              >
-                {{ shortenId(item.id) }}
-              </a>
-            </template>
-          </DataTable>
-        </div>
+              <ButtonTable text="Add Filter">
+                <template #leadingIcon>
+                  <img src="/image/download.svg" alt="" />
+                </template>
+              </ButtonTable>
+            </div>
+          </template>
+          <template #status="{ item }">
+            <p
+              class="bg-state-success-main text-white rounded-full px-2 py-1 w-fit"
+            >
+              {{ item.status }}
+            </p>
+          </template>
+          <template #id="{ item }">
+            <p
+              class="text-state-primary-main underline"
+            >
+              {{ item.id }}
+            </p>
+          </template>
+        </DataTable>
       </div>
     </template>
   </MainLayout>
