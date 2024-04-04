@@ -15,8 +15,8 @@ const props = defineProps({
 
 <template>
     <header class="bg-white px-6 pt-10 pb-6">
-      <div class="container mx-auto flex justify-between items-center">
-        <div class="flex flex-col items-start gap-2">
+      <div class="container mx-auto flex justify-between items-center py-4">
+        <div class="flex flex-col items-start">
           <h1 class="text-xl font-bold ">{{headerText}}</h1>
           <p class="text-gray-600 ">{{ subtitleText }}</p>
         </div>
