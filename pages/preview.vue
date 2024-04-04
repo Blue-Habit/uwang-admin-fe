@@ -4,20 +4,20 @@ const dataStatistic = ref<Array<Statistic>>([
   {
     icon: "image/user.svg",
     title: "Jumlah Pengguna",
-    amount: userStatisticsStore.statistics.totalUser,
+    amount:100 ,
     showStatistic: false,
   },
   {
     icon: "image/at-sign.svg",
     title: "Jumlah Daftar Hari",
-    amount: userStatisticsStore.statistics.userClaim,
+    amount:100,
     statistic: 100,
     showStatistic: true,
   },
   {
     icon: "image/activity.svg",
     title: "Jumlah pengguna aktif",
-    amount: userStatisticsStore.statistics.activeUser,
+    amount:100,
     statistic: -40,
     showStatistic: true,
   },
@@ -82,6 +82,7 @@ const items = [
                 <img src="image/chevron-down.svg" alt="" />
               </template>
             </ButtonTable>
+            <SearchField search="a" />
           </div>
           <ButtonTable text="Add Filter">
             <template #leadingIcon>
@@ -94,5 +95,6 @@ const items = [
         <p class="bg-state-success-main text-white rounded-full px-2 py-1 w-fit">{{ item.status_user }}</p>
       </template>
     </DataTable>
+    
   </div>
 </template>
